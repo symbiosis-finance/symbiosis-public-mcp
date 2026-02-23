@@ -1,0 +1,29 @@
+{
+  "name": "symbiosis-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for Symbiosis cross-chain swap protocol",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc && cp -r src/data dist/ && node scripts/postbuild.js",
+    "dev": "tsx src/index.ts",
+    "dev:http": "MCP_TRANSPORT=http PORT=3000 tsx src/index.ts",
+    "start": "node dist/index.js",
+    "start:http": "MCP_TRANSPORT=http node dist/index.js",
+    "inspect": "npx @modelcontextprotocol/inspector tsx src/index.ts"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "dotenv": "^17.3.1",
+    "ethers": "^6.16.0",
+    "express": "^5.1.0",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.15.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.8.0"
+  }
+}
