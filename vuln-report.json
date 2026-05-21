@@ -1,0 +1,100 @@
+{
+  "scan_date": "2026-05-21",
+  "pre_patch_count": 6,
+  "post_patch_count": 1,
+  "resolved_count": 5,
+  "changes": [],
+  "remaining": [
+    {
+      "name": "ws",
+      "version": "8.17.1",
+      "vuln_ids": [
+        "GHSA-58qx-3vcg-4xpx"
+      ]
+    }
+  ],
+  "escalations": [
+    {
+      "package": "@hono/node-server",
+      "installed_version": "1.19.9",
+      "severity": "HIGH",
+      "advisory_ids": [
+        "GHSA-wc8c-qw6v-h7f6",
+        "GHSA-92pp-h63x-v22m"
+      ],
+      "dep_path": "unknown",
+      "why_no_fix": "Could not trace to a direct manifest ancestor",
+      "override_recipe": "overrides.@hono/node-server = \"1.19.13\""
+    },
+    {
+      "package": "express-rate-limit",
+      "installed_version": "8.2.1",
+      "severity": "HIGH",
+      "advisory_ids": [
+        "GHSA-46wh-pxpv-q5gq"
+      ],
+      "dep_path": "unknown",
+      "why_no_fix": "Could not trace to a direct manifest ancestor",
+      "override_recipe": "overrides.express-rate-limit = \"8.2.2\""
+    },
+    {
+      "package": "hono",
+      "installed_version": "4.11.10",
+      "severity": "HIGH",
+      "advisory_ids": [
+        "GHSA-p6xx-57qc-3wxr",
+        "GHSA-5pq2-9x2x-5p6w",
+        "GHSA-9vqf-7f2p-gf9v",
+        "GHSA-wmmm-f939-6g9c",
+        "GHSA-qp7p-654g-cw7p",
+        "GHSA-xpcf-pg52-r92g",
+        "GHSA-26pp-8wgv-hjvm",
+        "GHSA-458j-xx4x-4375",
+        "GHSA-p77w-8qqv-26rm",
+        "GHSA-r5rp-j6wh-rvv4",
+        "GHSA-v8w9-8mx6-g223",
+        "GHSA-xf4j-xp2r-rqqx",
+        "GHSA-q5qw-h33p-qvwr",
+        "GHSA-hm8q-7f3q-5f36",
+        "GHSA-69xw-7hcm-h432"
+      ],
+      "dep_path": "unknown",
+      "why_no_fix": "Could not trace to a direct manifest ancestor",
+      "override_recipe": "overrides.hono = \"4.12.18\""
+    },
+    {
+      "package": "ip-address",
+      "installed_version": "10.0.1",
+      "severity": "MODERATE",
+      "advisory_ids": [
+        "GHSA-v2v4-37r5-5v8g"
+      ],
+      "dep_path": "unknown",
+      "why_no_fix": "Could not trace to a direct manifest ancestor",
+      "override_recipe": "overrides.ip-address = \"10.1.1\""
+    },
+    {
+      "package": "path-to-regexp",
+      "installed_version": "8.3.0",
+      "severity": "HIGH",
+      "advisory_ids": [
+        "GHSA-27v5-c462-wpq7",
+        "GHSA-j3q9-mxjg-w52f"
+      ],
+      "dep_path": "unknown",
+      "why_no_fix": "Could not trace to a direct manifest ancestor",
+      "override_recipe": "overrides.path-to-regexp = \"8.4.0\""
+    },
+    {
+      "package": "ws",
+      "installed_version": "8.17.1",
+      "severity": "MODERATE",
+      "advisory_ids": [
+        "GHSA-58qx-3vcg-4xpx"
+      ],
+      "dep_path": "unknown",
+      "why_no_fix": "Could not trace to a direct manifest ancestor",
+      "override_recipe": "overrides.ws = \"8.20.1\""
+    }
+  ]
+}
