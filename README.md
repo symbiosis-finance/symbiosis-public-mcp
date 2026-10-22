@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8-blue?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![MCP](https://img.shields.io/badge/MCP-Compatible-8A2BE2)](https://modelcontextprotocol.io)
-[![Node.js](https://img.shields.io/badge/Node.js-%3E%3D18-339933?logo=node.js&logoColor=white)](https://nodejs.org)
+[![Node.js](https://img.shields.io/badge/Node.js-22.23.4%2B-339933?logo=node.js&logoColor=white)](https://nodejs.org)
 [![Docker](https://img.shields.io/badge/Docker-Hub-2496ED?logo=docker&logoColor=white)](https://hub.docker.com/r/symbiosisfinance/symbiosis-public-mcp)
 
 A [Model Context Protocol](https://modelcontextprotocol.io) (MCP) server for [Symbiosis](https://symbiosis.finance) — enabling AI agents to perform **any-to-any token swaps** across 50+ blockchains, sign and broadcast transactions, track cross-chain status, and access validated RPC endpoints.
@@ -16,8 +16,8 @@ Pick **one** of the two options below — you don't need both.
 
 ### Option A: Node.js
 
-> Requires [Node.js v18+](https://nodejs.org/) — download the LTS installer for your OS, run it, done.
-> Verify: `node --version` (should print v18 or higher).
+> Requires [Node.js v22.23.4+, v24.22.1+, or v26.12.1+](https://nodejs.org/) — download the LTS installer for your OS, run it, done.
+> Verify: `node --version` (use a patched release: v22.23.4+, v24.22.1+, or v26.12.1+).
 
 ```bash
 git clone https://github.com/symbiosis-finance/symbiosis-public-mcp.git
