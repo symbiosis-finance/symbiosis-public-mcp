@@ -2,13 +2,13 @@ const API_BASE = "https://api.symbiosis.finance/crosschain";
 const PARTNER_ID = "mcp";
 
 // The API identifies the caller by headers: X-Api-Key (a partner key from the
-// Symbiosis partner dashboard, which gives its own quota) or X-Partner-Id.
-// Quotes and swaps need one of them; anything else counts against the client
-// IP at the default rate.
+// Symbiosis partner dashboard, which names the partner and gives its own
+// quota) or, without a key, X-Partner-Id. Quotes and swaps need one of them;
+// anything else counts against the client IP at the default rate.
 export function apiHeaders(): Record<string, string> {
   const partnerApiKey = process.env.SYMBIOSIS_PARTNER_API_KEY;
   return partnerApiKey
-    ? { "X-Partner-Id": PARTNER_ID, "X-Api-Key": partnerApiKey }
+    ? { "X-Api-Key": partnerApiKey }
     : { "X-Partner-Id": PARTNER_ID };
 }
 
