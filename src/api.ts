@@ -1,6 +1,17 @@
 const API_BASE = "https://api.symbiosis.finance/crosschain";
 const PARTNER_ID = "mcp";
 
+// The API identifies the caller by headers: X-Api-Key (a partner key from the
+// Symbiosis partner dashboard, which gives its own quota) or X-Partner-Id.
+// Quotes and swaps need one of them; anything else counts against the client
+// IP at the default rate.
+export function apiHeaders(): Record<string, string> {
+  const partnerApiKey = process.env.SYMBIOSIS_PARTNER_API_KEY;
+  return partnerApiKey
+    ? { "X-Partner-Id": PARTNER_ID, "X-Api-Key": partnerApiKey }
+    : { "X-Partner-Id": PARTNER_ID };
+}
+
 export interface TokenInfo {
   symbol: string;
   name: string;
@@ -32,11 +43,12 @@ export interface SwapRequest {
   from: string;
   to: string;
   slippage: number;
-  partnerId?: string;
 }
 
-async function fetchJson<T>(url: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(url, init);
+type FetchJsonInit = Omit<RequestInit, "headers"> & { headers?: Record<string, string> };
+
+async function fetchJson<T>(url: string, init: FetchJsonInit = {}): Promise<T> {
+  const res = await fetch(url, { ...init, headers: { ...apiHeaders(), ...init.headers } });
   const body = await res.json();
   if (!res.ok) {
     const msg = (body as { message?: string }).message ?? res.statusText;
@@ -67,28 +79,25 @@ function needsV2(srcChainId: number, dstChainId: number): boolean {
 }
 
 export async function getSwap(req: SwapRequest): Promise<Record<string, unknown>> {
-  const body = { ...req, partnerId: req.partnerId ?? PARTNER_ID };
-
   if (needsV2(req.tokenAmountIn.chainId, req.tokenOut.chainId)) {
     return fetchJson(`${API_BASE}/v2/swap`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
+      body: JSON.stringify(req),
     });
   }
 
   return fetchJson(`${API_BASE}/v1/swap`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
+    body: JSON.stringify(req),
   });
 }
 
 export async function getQuoteV2(req: SwapRequest): Promise<Record<string, unknown>> {
-  const body = { ...req, partnerId: req.partnerId ?? PARTNER_ID };
   return fetchJson(`${API_BASE}/v2/quote`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
+    body: JSON.stringify(req),
   });
 }

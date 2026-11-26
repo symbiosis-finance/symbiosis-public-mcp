@@ -1,3 +1,5 @@
+import { apiHeaders } from "../api.js";
+
 const API_BASE = "https://api.symbiosis.finance/crosschain";
 const EXPLORER_BASE = "https://explorer.symbiosis.finance/transactions";
 
@@ -16,7 +18,9 @@ export async function getTxStatus(
   transactionHash: string,
 ): Promise<TxStatus> {
   const explorerUrl = getSymbiosisExplorerUrl(chainId, transactionHash);
-  const res = await fetch(`${API_BASE}/v1/tx/${chainId}/${transactionHash}`);
+  const res = await fetch(`${API_BASE}/v1/tx/${chainId}/${transactionHash}`, {
+    headers: apiHeaders(),
+  });
 
   // 404 = not indexed yet, normal during first 1-2 minutes
   if (res.status === 404) {
